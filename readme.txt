@@ -1,11 +1,10 @@
-# resolve
-“””
+"""
 I was originally trying to calculate for indirect fire, but there are too many variables required to resolve those trajectories.
-So I decided to develop the calculations to resolve for a direct fire mission instead. It’s simpler.
+So I decided to develop the calculations to resolve for a direct fire mission instead. It's simpler.
 
 Need to do more work on error handelings.
 
-“””
+"""
 
 
 Overarching Logic
@@ -35,7 +34,7 @@ Translate Angle of Attack and Azmuth inputs to fire instructions for servo, send
 Do fire instructions on system match requirement? Loop translation script
 Do fire instructions on system match requirement? Yes
 
-Fire pin to “1”
+Fire pin to "1"
 
 ~~~~~~~
 ~~~~~~~
@@ -90,10 +89,9 @@ http://hyperphysics.phy-astr.gsu.edu/hbase/traj.html
 
 
 rocket = {
-‘title’: ‘ Klama B4-4 ‘,
-‘Te’: int(5),
-‘Bt’: int(1.3),
-‘Mv’:  0.05 ,
-‘version’: ‘ 20190318’,
+'title': ' Klama B4-4 ',
+'Te': int(5),
+'Bt': int(1.3),
+'Mv':  0.05 ,
+'version': ' 20190318',
 }
-

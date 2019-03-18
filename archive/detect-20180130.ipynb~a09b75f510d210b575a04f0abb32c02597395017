@@ -1,0 +1,82 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "import cmath"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# So let's define our variables for human consumption \n",
+    "\n",
+    "# Aeny = Altatude of Enemy from Above Ground Level (AGL)\n",
+    "# Deny = distance of Enemy from radar point (aka hypotonuse) PROVIDED FROM RADAR\n",
+    "# GDeny = Ground Distance of Enemy need to resolve to calculate attack trajectory\n",
+    "# Teny = Theta of Enemy / Attack angle from radar point to detection of Enemy\n",
+    "# Azeny = Azmuth of Enemy from magnetic North "
+   ]
+  },
+  {
+   "cell_type": "heading",
+   "metadata": {},
+   "level": 6,
+   "source": [
+    "I'm assuming that you are importing the data from the radar then parcing the string for the correct data."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Teny = 32 #made up number in meters. DATA COMES FOM RADAR\n",
+    "Deny = 45 #made up number in deg. DATA COMES FROM RADAR \n",
+    "\n",
+    "Aeny = cmath.sin(Teny) * Deny #trig to find enemy AGL\n",
+    "# now we know the Altitude of the Enemy\n",
+    "GDeny = cmath.cos(Teny) * Deny #trig to find enemy AGL\n",
+    "# ground distance of enemy to radar is resolved."
+   ]
+  },
+  {
+   "cell_type": "heading",
+   "metadata": {},
+   "level": 1,
+   "source": [
+    "\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
