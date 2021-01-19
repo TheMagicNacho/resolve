@@ -1,0 +1,550 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20494,        542]
+NotebookOptionsPosition[     18490,        504]
+NotebookOutlinePosition[     18944,        522]
+CellTagsIndexPosition[     18901,        519]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.818701860884575*^9, 
+  3.818701861259984*^9}},ExpressionUUID->"0fee5ff9-635d-43b2-95bf-\
+6d05e2ef8ec0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"UNIVERSAL", " ", "CONSTANTS"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"gravity", "=", " ", 
+    RowBox[{"-", "9.8"}]}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"m", "/", "s"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"ASSUMED", " ", "CONSTANTS"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"coefficentOfDrag", "=", "0.295"}], "  ", 
+   RowBox[{"(*", 
+    RowBox[{"Assumed", " ", "from", " ", "bullet"}], "*)"}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"TEST", " ", "CONSTANTS"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"areaOfProjectileCrossection", "=", "0.05"}], " ", 
+  RowBox[{"(*", "m", "*)"}], "  ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pressure", "=", "101325"}], ";", " ", 
+   RowBox[{"(*", "Pa", "*)"}], " ", "\[IndentingNewLine]", 
+   RowBox[{"theta", " ", "=", " ", "0.5236"}], " ", 
+   RowBox[{"(*", "radians", "*)"}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"M", " ", "-", " ", 
+    RowBox[{"assumed", " ", "from", " ", "size", " ", "of", " ", "rocket"}]}],
+    "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"https", ":"}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"estesrockets", ".", "com"}], "/", "product"}], "/", 
+      "001650"}], "-", "f15", "-", "0", "-", "engines", "-", "29", "-", 
+     RowBox[{"mm", "/"}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"m", "=", "1"}], " ", 
+  RowBox[{"(*", "kg", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", " ", "=", "25.26"}], " ", 
+  RowBox[{"(*", "newtons", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"timeThrust", " ", "=", " ", "2.45"}], " ", 
+   RowBox[{"(*", "seconds", "*)"}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Phase", " ", "I"}], " ", "-", " ", 
+    RowBox[{"Solve", " ", "for", " ", "the"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"sPhaseI", "[", "t_", "]"}], ":=", 
+    RowBox[{
+     FractionBox["1", "2"], "*", 
+     FractionBox["f", "m"], "*", 
+     RowBox[{"t", "^", "2"}]}]}], ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"deltaS", "=", 
+    RowBox[{"sPhaseI", "[", "timeThrust", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"sPhaseIx", "=", 
+    RowBox[{"deltaS", "*", 
+     RowBox[{"Cos", "[", "theta", "]"}]}]}], ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"sPhaseIy", " ", "=", 
+     RowBox[{"deltaS", "*", 
+      RowBox[{"Sin", "[", "theta", "]"}]}]}], ";"}],
+   FontColor->RGBColor[1, 0.5, 0]], 
+  StyleBox["\[IndentingNewLine]",
+   FontColor->RGBColor[1, 0.5, 0]], 
+  StyleBox["\[IndentingNewLine]",
+   FontColor->RGBColor[1, 0.5, 0]]}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"velocityPhaseIFinal", " ", "=", 
+    RowBox[{
+     FractionBox["f", "m"], "timeThrust"}]}], " ", ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"velocityPhaseIYFinal", "=", 
+    RowBox[{"velocityPhaseIFinal", " ", "*", 
+     RowBox[{"Sin", "[", "theta", "]"}]}]}], ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"velocityPhaseIXFinal", "=", 
+     RowBox[{"velocityPhaseIFinal", " ", "*", 
+      RowBox[{"Cos", "[", "theta", "]"}]}]}], ";"}],
+   FontColor->RGBColor[1, 0.5, 0]], 
+  StyleBox["\[IndentingNewLine]",
+   FontColor->RGBColor[1, 0.5, 0]], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"Echo", "[", " ", 
+    RowBox[{"deltaS", ",", " ", 
+     RowBox[{
+      RowBox[{"Subscript", "[", 
+       RowBox[{"\[CapitalDelta]S", ",", "net"}], "]"}], 
+      "\"\<Phase I-Total Displacement in flight \>\""}]}], "]"}], ";"}],
+  FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"Echo", "[", " ", 
+    RowBox[{"sPhaseIx", ",", " ", 
+     RowBox[{
+      RowBox[{"Subscript", "[", 
+       RowBox[{"\[CapitalDelta]S", ",", "x"}], "]"}], "  ", 
+      "\"\<Phase I-Displacement-X axis\>\""}]}], "]"}], ";"}],
+  FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"Echo", "[", " ", 
+    RowBox[{"sPhaseIy", ",", " ", 
+     RowBox[{
+      RowBox[{"Subscript", "[", 
+       RowBox[{"\[CapitalDelta]S", ",", "y"}], "]"}], 
+      "\"\<Phase I-Displacement-Y axis\>\""}]}], "]"}], ";"}],
+  FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"Echo", "[", 
+    RowBox[{"velocityPhaseIFinal", ",", " ", 
+     RowBox[{
+      RowBox[{"Subscript", "[", 
+       RowBox[{"V", ",", "phaseI_final"}], "]"}], 
+      "\"\<V_final Phase I-Velocity Final\>\""}]}], "]"}], ";"}],
+  FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"Echo", "[", " ", 
+     RowBox[{"velocityPhaseIYFinal", ",", " ", 
+      RowBox[{
+       RowBox[{"Subscript", "[", 
+        RowBox[{"V", ",", 
+         RowBox[{"phaseI_y", "_final"}]}], "]"}], "  ", 
+       "\"\<Phase I-Velocity Final-Y axis\>\""}]}], "]"}], ";"}],
+   FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"timeOfFlightPhaseII", "=", 
+    FractionBox[
+     RowBox[{"velocityPhaseIYFinal", "+", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{"velocityPhaseIYFinal", "^", "2"}], "+", 
+        RowBox[{"2", "*", 
+         RowBox[{"Abs", "[", "gravity", "]"}], "*", "sPhaseIy"}]}], "]"}]}], 
+     RowBox[{"Abs", "[", "gravity", "]"}]]}], ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"timeOfFlightNet", " ", "=", 
+     RowBox[{"timeThrust", "+", "timeOfFlightPhaseII"}]}], ";"}],
+   FontColor->RGBColor[1, 0.5, 0]], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{"Echo", "[", " ", 
+    RowBox[{"timeOfFlightPhaseII", ",", " ", 
+     RowBox[{
+      RowBox[{"Subscript", "[", 
+       RowBox[{"\[CapitalDelta]T", ",", "phaseII"}], "]"}], "  ", 
+      "\"\<Phase II-Time of Flight\>\""}]}], "]"}], ";"}],
+  FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"Echo", "[", " ", 
+     RowBox[{"timeOfFlightNet", ",", " ", 
+      RowBox[{
+       RowBox[{"Subscript", "[", 
+        RowBox[{"\[CapitalDelta]T", ",", "net"}], "]"}], "  ", 
+       "\"\<Total Time of Flight\>\""}]}], "]"}], ";"}],
+   FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Phase", " ", "II"}], " ", "-", " ", 
+    RowBox[{"Displacement", " ", "in", " ", "the", " ", "Y"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"sYPhaseII", "[", "t_", "]"}], " ", ":=", "  ", 
+    RowBox[{"sPhaseIy", "+", 
+     RowBox[{"velocityPhaseIYFinal", "*", "t"}], "+", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], " ", "*", "gravity", "*", 
+      RowBox[{"t", "^", "2"}]}]}]}], ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"Echo", "[", " ", 
+     RowBox[{
+      RowBox[{"sYPhaseII", "[", "timeOfFlightPhaseII", "]"}], ",", " ", 
+      RowBox[{
+       RowBox[{"Subscript", "[", 
+        RowBox[{"\[CapitalDelta]S", ",", "PhaseII_y"}], "]"}], "  ", 
+       "\"\<Altitude at total flight time\>\""}]}], "]"}], ";"}],
+   FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Phase", " ", "II"}], " ", "-", " ", 
+    RowBox[{"Displacement", " ", "in", " ", "the", " ", "X"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"sXPhaseII", "[", "t_", "]"}], " ", ":=", " ", 
+    RowBox[{"sPhaseIx", "+", 
+     RowBox[{"velocityPhaseIXFinal", "*", 
+      RowBox[{"Cos", "[", "theta", "]"}], "*", "t"}]}]}], ";"}],
+  FontColor->RGBColor[1, 0.5, 0]], "\[IndentingNewLine]", 
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"Echo", "[", " ", 
+     RowBox[{
+      RowBox[{"sXPhaseII", "[", "timeOfFlightPhaseII", "]"}], ",", " ", 
+      RowBox[{
+       RowBox[{"Subscript", "[", 
+        RowBox[{"\[CapitalDelta]S", ",", "PhaseII_x"}], "]"}], "  ", 
+       "\"\<Displacement at total flight time\>\""}]}], "]"}], ";"}],
+   FontColor->RGBColor[1, 0, 1]], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"<", "phaseII", ">", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"Phase", " ", "II"}], " ", "-", " ", 
+         RowBox[{"Displacement", " ", "in", " ", "the", " ", "Y"}]}], " ", 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"sYPhaseII", "[", "t_", "]"}]}], " ", ":=", " ", 
+      RowBox[{"yOffset", " ", "+", 
+       RowBox[{"velocityInitial", "*", 
+        RowBox[{"Sin", "[", "theta", "]"}], "*", "t"}], "+", 
+       FractionBox[
+        RowBox[{"gravity", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}], "*", 
+         RowBox[{"t", "^", "2"}]}], "2"]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{"Phase", " ", "II"}], " ", "-", " ", 
+       RowBox[{"Displacement", " ", "in", " ", "the", " ", "X"}]}], " ", 
+      "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"sXPhaseII", "[", "t_", "]"}], " ", ":=", " ", 
+      RowBox[{"xOffset", "+", 
+       RowBox[{"velocityInitial", "*", 
+        RowBox[{"Cos", "[", "theta", "]"}], "*", "t"}], "+", 
+       RowBox[{
+        FractionBox["1", "2"], 
+        RowBox[{"(", 
+         RowBox[{"gravity", "-", 
+          RowBox[{"coefficentOfDrag", "*", 
+           FractionBox[
+            RowBox[{"pressure", "*", 
+             RowBox[{"velocityInitial", "^", "2"}]}], "2"], 
+           "areaOfProjectileCrossection"}]}], ")"}]}]}]}], ";"}], 
+    "\[IndentingNewLine]", "<", 
+    RowBox[{"/", "phaseII"}], ">", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]}], "\[IndentingNewLine]", 
+   "*)"}], "\[IndentingNewLine]", 
+  StyleBox["\[IndentingNewLine]",
+   FontColor->RGBColor[1, 0.5, 0]]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.818701892347478*^9, 3.8187020487802463`*^9}, {
+   3.8187021466724987`*^9, 3.818702234541699*^9}, {3.818702391701473*^9, 
+   3.8187024005582047`*^9}, {3.8187024401696157`*^9, 3.818702461095752*^9}, {
+   3.8187025178608336`*^9, 3.81870252333074*^9}, {3.818702759411337*^9, 
+   3.8187028281923037`*^9}, {3.8187028650869503`*^9, 
+   3.8187028667367897`*^9}, {3.8187028986380863`*^9, 3.818702915842334*^9}, {
+   3.8187029588375154`*^9, 3.818702972012602*^9}, {3.818703109908779*^9, 
+   3.818703283567627*^9}, {3.818703968060829*^9, 3.818704030861567*^9}, {
+   3.818704221124703*^9, 3.8187043101182213`*^9}, {3.8187043909442596`*^9, 
+   3.8187044463776736`*^9}, 3.818710676123787*^9, {3.8187108314929976`*^9, 
+   3.818710857091704*^9}, {3.818710992270204*^9, 3.818711014450815*^9}, {
+   3.818711080446921*^9, 3.818711131837041*^9}, {3.818711319679468*^9, 
+   3.818711343498168*^9}, {3.8187114096937*^9, 3.8187114617675743`*^9}, {
+   3.818711502447626*^9, 3.8187115937124977`*^9}, {3.8187116422360263`*^9, 
+   3.8187117086319866`*^9}, {3.818711780379284*^9, 3.818711879985832*^9}, {
+   3.818712301797476*^9, 3.8187123492590256`*^9}, {3.818712491756465*^9, 
+   3.818712560925191*^9}, {3.8187126345944223`*^9, 3.818712721901305*^9}, {
+   3.818712778605029*^9, 3.8187128070264883`*^9}, {3.8187128647282343`*^9, 
+   3.8187128663272533`*^9}, {3.818798792251938*^9, 3.818799002813106*^9}, {
+   3.8187991745767803`*^9, 3.818799376926156*^9}, {3.818799602792852*^9, 
+   3.818799631087294*^9}, {3.818799680693384*^9, 3.818799742635243*^9}, {
+   3.818799808630444*^9, 3.8187999274131517`*^9}, {3.818880283056388*^9, 
+   3.818880778892868*^9}, {3.818880811798465*^9, 3.81888089380793*^9}, {
+   3.818881005787106*^9, 3.8188810599863157`*^9}, {3.818881115915745*^9, 
+   3.8188816587893744`*^9}, {3.818882033747509*^9, 3.8188821336889553`*^9}, {
+   3.818882192194091*^9, 3.81888219808361*^9}, {3.8188822599627447`*^9, 
+   3.818882261365679*^9}, {3.818882808099029*^9, 3.8188828365158052`*^9}, {
+   3.818882880218137*^9, 3.818882881374325*^9}, {3.818884383318797*^9, 
+   3.818884419937984*^9}, {3.818884456523059*^9, 3.818884457385261*^9}, {
+   3.818884542342752*^9, 3.818884552278762*^9}, {3.8188848200392427`*^9, 
+   3.818884864474749*^9}, {3.818884900328204*^9, 3.818884943401658*^9}, {
+   3.8188849859219646`*^9, 3.8188850483506517`*^9}, 3.81888522637042*^9, 
+   3.818975774820627*^9, {3.818975965358872*^9, 3.818975994342746*^9}, {
+   3.818976732879032*^9, 3.818976793628186*^9}, {3.8189768390457163`*^9, 
+   3.818976924220759*^9}, {3.81897695497351*^9, 
+   3.8189770388450212`*^9}},ExpressionUUID->"d96021b3-95e3-4508-8f91-\
+aa7915d2abe1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Phase I-Total Displacement in flight \"\>", " ", 
+    SubscriptBox["\[CapitalDelta]S", "net"]}],
+   "EchoLabel"], "  ", "75.81157500000002`"}]], "Echo",
+ CellChangeTimes->{
+  3.818976995231049*^9},ExpressionUUID->"a644aa61-baab-4ea3-8e56-\
+c84483fc28d5"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Phase I-Displacement-X axis\"\>", " ", 
+    SubscriptBox["\[CapitalDelta]S", "x"]}],
+   "EchoLabel"], "  ", "65.65470343894937`"}]], "Echo",
+ CellChangeTimes->{
+  3.8189769952570763`*^9},ExpressionUUID->"2590c229-a157-48d4-a244-\
+4be39988c45e"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Phase I-Displacement-Y axis\"\>", " ", 
+    SubscriptBox["\[CapitalDelta]S", "y"]}],
+   "EchoLabel"], "  ", "37.905867887759`"}]], "Echo",
+ CellChangeTimes->{
+  3.818976995292472*^9},ExpressionUUID->"f40baa02-39db-40ff-b8ed-\
+f177e72b0cfb"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"V_final Phase I-Velocity Final\"\>", " ", 
+    SubscriptBox["V", "phaseI_final"]}],
+   "EchoLabel"], "  ", "61.88700000000001`"}]], "Echo",
+ CellChangeTimes->{
+  3.8189769953216343`*^9},ExpressionUUID->"74e48498-9339-448d-a52e-\
+e6cb35b1fb96"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Phase I-Velocity Final-Y axis\"\>", " ", 
+    SubscriptBox["V", 
+     RowBox[{"_final", " ", "phaseI_y"}]]}],
+   "EchoLabel"], "  ", "30.943565622660405`"}]], "Echo",
+ CellChangeTimes->{
+  3.818976995354026*^9},ExpressionUUID->"7bedf4ef-5168-4491-91f4-\
+24723d4121b0"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Phase II-Time of Flight\"\>", " ", 
+    SubscriptBox["\[CapitalDelta]T", "phaseII"]}],
+   "EchoLabel"], "  ", "7.365325601768921`"}]], "Echo",
+ CellChangeTimes->{
+  3.8189769953832493`*^9},ExpressionUUID->"b16fd4ad-e07f-4cd6-b352-\
+c050ef18edad"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Total Time of Flight\"\>", " ", 
+    SubscriptBox["\[CapitalDelta]T", "net"]}],
+   "EchoLabel"], "  ", "9.815325601768922`"}]], "Echo",
+ CellChangeTimes->{
+  3.818976995415251*^9},ExpressionUUID->"66c7538d-3e25-4872-aa6c-\
+ae304f8beeea"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Altitude at total flight time\"\>", " ", 
+    SubscriptBox["\[CapitalDelta]S", "PhaseII_y"]}],
+   "EchoLabel"], "  ", "0.`"}]], "Echo",
+ CellChangeTimes->{
+  3.818976995445694*^9},ExpressionUUID->"18af219f-6fab-4b2a-8b3e-\
+a690eefeeeb5"],
+
+Cell[BoxData[
+ RowBox[{
+  TagBox[
+   RowBox[{"\<\"Altitude at total flight time\"\>", " ", 
+    SubscriptBox["\[CapitalDelta]S", "PhaseII_x"]}],
+   "EchoLabel"], "  ", "407.51764924368115`"}]], "Echo",
+ CellChangeTimes->{
+  3.8189769954803543`*^9},ExpressionUUID->"77fa5d34-577c-45d6-bda7-\
+72b45cb66d7a"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{
+  3.818712873622068*^9, {3.8187994286499043`*^9, 
+   3.818799428993211*^9}},ExpressionUUID->"a467d1f4-1b4e-44ed-b876-\
+6a2e6dba9905"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.818799429983346*^9, 
+  3.818799430351676*^9}},ExpressionUUID->"286f6f8d-660b-47b1-9145-\
+3cc442322a98"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.81870200892631*^9, 3.818702011656968*^9}, {
+   3.818702474268736*^9, 3.818702669363715*^9}, {3.818702708629084*^9, 
+   3.818702711243239*^9}, {3.8187027538014107`*^9, 3.8187027541262617`*^9}, 
+   3.818703281049055*^9},ExpressionUUID->"51522901-3583-4cbd-adba-\
+1055860428ee"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \\!\\(\\*RowBox[{\\\"sXPhase\
+\\\", \\\" \\\", RowBox[{\\\"II\\\", \\\"[\\\", \\\"t_\\\", \\\"]\\\"}]}]\\) \
+is Protected.\"", 2, 1, 1, 33125552224927897795, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.818702731019911*^9, 
+  3.8187027513110533`*^9}},ExpressionUUID->"60e4b28a-6a0e-4796-b5a2-\
+c0a62d539279"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8187027497124653`*^9, 
+  3.818702749716662*^9}},ExpressionUUID->"11eceb93-2b09-48ff-89f0-\
+4be3513fb442"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.818702530199541*^9, 
+  3.8187025307383738`*^9}},ExpressionUUID->"58d2c3a3-37d8-446b-a66a-\
+6e4153f2a3d2"]
+},
+WindowSize->{1280, 1376},
+WindowMargins->{{Automatic, 88}, {-92, Automatic}},
+WindowStatusArea->"",
+Magnification:>1.3 Inherited,
+FrontEndVersion->"12.2 for Linux x86 (64-bit) (December 12, 2020)",
+StyleDefinitions->"ReverseColor.nb",
+ExpressionUUID->"9addf6e0-114b-4e93-9f8e-004432619adf"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 152, 3, 38, "Input",ExpressionUUID->"0fee5ff9-635d-43b2-95bf-6d05e2ef8ec0"],
+Cell[CellGroupData[{
+Cell[735, 27, 13444, 335, 1955, "Input",ExpressionUUID->"d96021b3-95e3-4508-8f91-aa7915d2abe1"],
+Cell[CellGroupData[{
+Cell[14204, 366, 304, 8, 32, "Echo",ExpressionUUID->"a644aa61-baab-4ea3-8e56-c84483fc28d5"],
+Cell[14511, 376, 294, 8, 32, "Echo",ExpressionUUID->"2590c229-a157-48d4-a244-4be39988c45e"],
+Cell[14808, 386, 290, 8, 32, "Echo",ExpressionUUID->"f40baa02-39db-40ff-b8ed-f177e72b0cfb"],
+Cell[15101, 396, 293, 8, 32, "Echo",ExpressionUUID->"74e48498-9339-448d-a52e-e6cb35b1fb96"],
+Cell[15397, 406, 318, 9, 32, "Echo",ExpressionUUID->"7bedf4ef-5168-4491-91f4-24723d4121b0"],
+Cell[15718, 417, 296, 8, 32, "Echo",ExpressionUUID->"b16fd4ad-e07f-4cd6-b352-c050ef18edad"],
+Cell[16017, 427, 287, 8, 32, "Echo",ExpressionUUID->"66c7538d-3e25-4872-aa6c-ae304f8beeea"],
+Cell[16307, 437, 287, 8, 32, "Echo",ExpressionUUID->"18af219f-6fab-4b2a-8b3e-a690eefeeeb5"],
+Cell[16597, 447, 305, 8, 32, "Echo",ExpressionUUID->"77fa5d34-577c-45d6-bda7-72b45cb66d7a"]
+}, Open  ]]
+}, Open  ]],
+Cell[16929, 459, 180, 4, 38, "Input",ExpressionUUID->"a467d1f4-1b4e-44ed-b876-6a2e6dba9905"],
+Cell[17112, 465, 152, 3, 38, "Input",ExpressionUUID->"286f6f8d-660b-47b1-9145-3cc442322a98"],
+Cell[CellGroupData[{
+Cell[17289, 472, 378, 6, 93, "Input",ExpressionUUID->"51522901-3583-4cbd-adba-1055860428ee"],
+Cell[17670, 480, 490, 11, 27, "Message",ExpressionUUID->"60e4b28a-6a0e-4796-b5a2-c0a62d539279"]
+}, Open  ]],
+Cell[18175, 494, 154, 3, 38, "Input",ExpressionUUID->"11eceb93-2b09-48ff-89f0-4be3513fb442"],
+Cell[18332, 499, 154, 3, 38, "Input",ExpressionUUID->"58d2c3a3-37d8-446b-a66a-6e4153f2a3d2"]
+}
+]
+*)
+
